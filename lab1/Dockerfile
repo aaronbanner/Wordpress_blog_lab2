@@ -1,5 +1,6 @@
 # croftd - simple Dockerfile to create a PHP 7.4 and Apache container pulled from Docker Hub
 FROM php:7.4-apache
+
 # copy all the files from current directory into /var/www/html which is where Apache serves
 COPY . /var/www/html
 
