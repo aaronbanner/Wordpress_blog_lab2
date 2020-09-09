@@ -8,6 +8,8 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
         crossorigin="anonymous">
     </script>
+    <!-- old version of JQuery! -->
+    <!-- <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> -->
     <script>
 
         var map;
@@ -63,7 +65,8 @@
                     text: 'not implemented yet!'
                 };
                 console.log("Sending request for Pokemon marker list...");
-
+		
+		try {
                 $.getJSON(url, data, function (data, status) {
                     console.log("Ajax call completed, status is: " + status);
 
@@ -91,10 +94,9 @@
                         myMarkers.push(mmarker);
                     });
                 })
-                .error(function(jqXHR, textStatus, errorThrown) {
-                     console.log("error " + textStatus);
-                     console.log("incoming Text " + jqXHR.responseText);
-                     });
+		} catch (error) {
+			console.log("Error requesting JSON data: " + error);
+		}
 
             });
         });
@@ -111,7 +113,7 @@
 
 <!-- NOTE this google map is using an ITAS Google Map key! Do not use for any of your private applications hosted live anywhere-->
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=_YOUR_GOOGLE_MAP_KEYi_&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?YOUR_MAP_KEY&callback=initMap">
 </script>
 
 
