@@ -113,7 +113,7 @@
 
 <!-- NOTE this google map is using an ITAS Google Map key! Do not use for any of your private applications hosted live anywhere-->
 <script async defer
-        src="https://maps.googleapis.com/maps/api/js?YOUR_MAP_KEY&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?AIzaSyAPo8T2g2OjQ2_LYrj3BMD6chyl24rQBxU&callback=initMap">
 </script>
 
 
