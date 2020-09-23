@@ -16,6 +16,8 @@
  */
 class World
 {
+    // this is called the Singleton pattern, the World class is going to 
+    // contain a single instance of a World object and we will store it here
     static $instance;
 
     private $trainer; // Trainer
@@ -79,7 +81,13 @@ class World
      */
     public function load()
     {
-	// croftd: TODO
+        // croftd: added code to read first the file for wildPokemon,
+        // and second the file for trainer's pokemon
+        $this->wildPokemon = loadPokemon("wildPokemon.txt");
+        
+        // This will only work, if Trainer class has a public variable 
+        // called pokedex to store an array of Pokemon read from the file
+        $this->trainer->pokedex = loadPokemon("trainerPokemon.txt");
     }
 
     /**
@@ -155,7 +163,6 @@ class World
      */
     public function getJSON()
     {
-
         // croftd: This is just an example to make the initial map and getPokemon.php
         // talk to each other
         // To complete the lab you will have to loop through all the wild pokemon
@@ -175,14 +182,41 @@ class World
 
     /**
      * Function to load Pokemon objects from a csv file
+     * 
+     * WRITE YOUR CODE FOR STEP9 HERE - This function should return an array
      *
      * @param $filename
      * @return array containing Pokemon objects
      */
     public function loadPokemon($filename)
     {
+        // $filename gets passed in, it will contain something like "wildPokemon.txt"
         // croftd: currently does nothing
-        return null;
+
+        // Read the file in and convert to a set of lines
+        $lines = file($filename);
+
+        // create a blank array that we will add to each line we go through
+        $pokemons = array();
+
+        // Cycle through the array which will return each line
+        foreach ($lines as $line) {
+
+            // Parse the line, retrieving the name and e-mail address
+            list($name, $weight, $hp, $lat, $long) = explode(",", $line);
+
+            echo "<br>Checking this worked, here is name: " . $name;
+            // Remove newline from $name if you need to
+            $name = trim($name);
+            
+            // Create a new Pokemon object using the name of the class we read in
+            // and the other four variables
+            $poke = new $name($weight, $hp, $lat, $long);
+
+            // we need to add this to the array of pokemon
+            
+        }
+        return $pokemons;
 
     }
 }
