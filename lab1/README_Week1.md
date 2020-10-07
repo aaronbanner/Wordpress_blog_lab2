@@ -44,6 +44,8 @@ Manually import the Pokemon class with require_once (this is the only class Trai
 This class should have the following fields:
 	An array to store pokemon (you might call this $pokedex)
 	A String to store a name
+	A String to store an image for the Trainer (we might want to show this on the map later)
+	Variables for latitude and longitude
 
 Write a constructor for Trainer that accepts a single parameter for the name of the trainer and initializes the array to store Pokemon objects
 
@@ -56,8 +58,15 @@ Write a method called attackAll(), that loops through all the Pokemon and calls 
 
 ## PART 4
 
-Create an index.php file
-Use the __autoload statement from the slides above to import all our Pokemon classes
+Let's add some testing code to test.php file
+Use the __autoload statement to import all our Pokemon classes that we will be testing:
+```
+// Simple test script to test our pokemon classes
+
+function __autoload ($class_name) {
+    require_once $class_name . '.php';
+}
+```
 Create a Trainer object
 Instantiate 3 Bulbasaur, 1 Pikachu and 3 Paras Pokemon, and add these to the Trainer
 Call the printAll() method on the Trainer object
